@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Messenger", "Bot.Messenger\Bot.Messenger.csproj", "{14995748-9D18-46BF-A7B7-7E9111352CAF}"
 EndProject
@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.Messenger", "Facebook.Messenger\Facebook.Messenger.csproj", "{96956A4A-6F79-47E1-B462-C71F78705DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,8 +26,15 @@ Global
 		{14995748-9D18-46BF-A7B7-7E9111352CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14995748-9D18-46BF-A7B7-7E9111352CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14995748-9D18-46BF-A7B7-7E9111352CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96956A4A-6F79-47E1-B462-C71F78705DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96956A4A-6F79-47E1-B462-C71F78705DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96956A4A-6F79-47E1-B462-C71F78705DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96956A4A-6F79-47E1-B462-C71F78705DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C919C266-5137-4E12-BB9C-C29F790284E3}
 	EndGlobalSection
 EndGlobal
