@@ -10,7 +10,7 @@ namespace Facebook.Messenger.Models
     public class Identifier
     {
         [JsonProperty("id")]
-        public virtual string ID { get; set; }
+        public virtual string Id { get; set; }
 
         [JsonProperty("phone_number")]
         public virtual string PhoneNumber { get; set; }

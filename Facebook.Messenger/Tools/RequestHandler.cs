@@ -11,57 +11,53 @@ using System.Threading.Tasks;
 
 namespace Facebook.Messenger.Tools
 {
-    public class RequestHandler
+    public static class RequestHandler
     {
         public static async Task<T> GetAsync<T>(string requestUrl)
             where T : WebResponse, new()
         {
-            using (HttpClient client = new HttpClient())
+
+            T webResponse = new T();
+
+            try
             {
-                T webResponse = new T();
+                SetDefaultHeaders(client);
 
-                try
-                {
-                    SetDefaultHeaders(client);
+                HttpResponseMessage response = await client.GetAsync(requestUrl);
 
-                    HttpResponseMessage response = await client.GetAsync(requestUrl);
-
-                    webResponse = await ProcessResult<T>(response);
-                }
-                catch (Exception ex)
-                {
-                    webResponse.Exception = ex;
-                }
-
-                return webResponse;
+                webResponse = await ProcessResult<T>(response);
             }
+            catch (Exception ex)
+            {
+                webResponse.Exception = ex;
+            }
+
+            return webResponse;
+
         }
 
         public static async Task<T> PostAsync<T>(JObject json, string requestUrl)
             where T : WebResponse, new()
         {
-            using (HttpClient client = new HttpClient())
+            T webResponse = new T();
+
+            try
             {
-                T webResponse = new T();
+                SetDefaultHeaders(client);
 
-                try
-                {
-                    SetDefaultHeaders(client);
+                string requestBody = json.ToString();
 
-                    string requestBody = json.ToString();
+                HttpResponseMessage response = await client.PostAsync(requestUrl,
+                    new StringContent(requestBody, Encoding.UTF8, "application/json"));
 
-                    HttpResponseMessage response = await client.PostAsync(requestUrl,
-                        new StringContent(requestBody, Encoding.UTF8, "application/json"));
-
-                    webResponse = await ProcessResult<T>(response, requestBody);
-                }
-                catch (Exception ex)
-                {
-                    webResponse.Exception = ex;
-                }
-
-                return webResponse;
+                webResponse = await ProcessResult<T>(response, requestBody);
             }
+            catch (Exception ex)
+            {
+                webResponse.Exception = ex;
+            }
+
+            return webResponse;
         }
 
         public static async Task<T> DeleteAsync<T>(string requestUrl)
@@ -88,31 +84,30 @@ namespace Facebook.Messenger.Tools
             }
         }
 
+        private static HttpClient client = new HttpClient();
+
         public static async Task<T> DeleteAsync<T>(JObject json, string requestUrl)
             where T : WebResponse, new()
         {
-            using (HttpClient client = new HttpClient())
+            T webResponse = new T();
+
+            try
             {
-                T webResponse = new T();
+                SetDefaultHeaders(client);
 
-                try
-                {
-                    SetDefaultHeaders(client);
+                string requestBody = json.ToString();
 
-                    string requestBody = json.ToString();
+                HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Delete, requestUrl)
+                { Content = new StringContent(requestBody, Encoding.UTF8, "application/json") });
 
-                    HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Delete, requestUrl)
-                        { Content = new StringContent(requestBody, Encoding.UTF8, "application/json") });
-
-                    webResponse = await ProcessResult<T>(response, requestBody);
-                }
-                catch (Exception ex)
-                {
-                    webResponse.Exception = ex;
-                }
-
-                return webResponse;
+                webResponse = await ProcessResult<T>(response, requestBody);
             }
+            catch (Exception ex)
+            {
+                webResponse.Exception = ex;
+            }
+
+            return webResponse;
         }
 
         private static void SetDefaultHeaders(HttpClient client)

@@ -9,8 +9,11 @@ namespace Facebook.Messenger.Models
 {
     public class WebhookEvent : MessageContainer<WebhookMessage>
     {
+
         [JsonProperty("sender")]
         public virtual Identifier Sender { get; set; }
+
+        [JsonIgnore] public long SenderId => long.Parse(Sender.Id);
 
         [JsonProperty("timestamp")]
         public virtual long TimeStamp { get; set; }
@@ -41,6 +44,9 @@ namespace Facebook.Messenger.Models
 
         [JsonProperty("account_linking")]
         public virtual AccountLink AccountLink { get; set; }
+
+        [JsonIgnore] public string Id => Message?.Mid;
+        [JsonIgnore] public string Text => Message?.Text;
 
         [JsonIgnore]
         public WebhookEventType EventType

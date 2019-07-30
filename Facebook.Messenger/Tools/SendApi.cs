@@ -78,7 +78,7 @@ namespace Facebook.Messenger.Tools
         {
             return await SendAsync(JObject.FromObject(new SenderActionContainer
             {
-                Recipient = new Identifier { ID = recipientID },
+                Recipient = new Identifier { Id = recipientID },
                 SenderAction = action
             }, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
         }
@@ -88,7 +88,7 @@ namespace Facebook.Messenger.Tools
         {
             return await SendAsync(JObject.FromObject(new MessageContainer<T>
             {
-                Recipient = new Identifier { ID = recipientID },
+                Recipient = new Identifier { Id = recipientID },
                 Message = message
             }, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
         }

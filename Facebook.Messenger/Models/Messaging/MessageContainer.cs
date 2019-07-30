@@ -20,6 +20,8 @@ namespace Facebook.Messenger.Models
 
         [JsonProperty("notification_type")]
         public virtual NotificationType NotificationType { get; set; }
+
+        [JsonIgnore] public long RecipientId => long.Parse(Recipient.Id);
     }
 
     public class MessageContainer<T> : MessageContainer where T : Message

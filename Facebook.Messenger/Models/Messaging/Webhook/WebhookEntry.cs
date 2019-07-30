@@ -10,7 +10,7 @@ namespace Facebook.Messenger.Models
     public class WebhookEntry
     {
         [JsonProperty("id")]
-        public virtual string ID { get; set; }
+        public virtual string Id { get; set; }
 
         [JsonProperty("time")]
         public virtual long Time { get; set; }
